@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique @db.VarChar(100)
+  nama        String   @db.VarChar(150)
+  merk        String   @db.VarChar(100)
+  tahun       Int
+  harga       BigInt
+  transmisi   String   @db.VarChar(20)
+  bahan_bakar String   @db.VarChar(20)
+  warna       String   @db.VarChar(100)
+  gambar      String   @db.Text
+  deskripsi   String   @db.Text
+  // Spesifikasi
+  mesin       String   @db.VarChar(150)
+  kapasitas   String   @db.VarChar(20)
+  hp          Int
+  torsi       String   @db.VarChar(50)
+  konsumsi_bbm String  @db.VarChar(50)
+  top_speed   String   @db.VarChar(50)
+  akselerasi  String   @db.VarChar(100)
+  penggerak   String   @db.VarChar(20)
+  fitur       String   @db.Text
+  interior    String   @db.Text
+  eksterior   String   @db.Text
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("cars")
+}
